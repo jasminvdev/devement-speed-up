@@ -118,6 +118,25 @@ chmod 777 ./app/etc
 chmod 644 ./app/etc/*.xml
 chmod u+x bin/magento
 
+
+sudo whoami
+    root
+whoami
+    keyur
+ps aux | grep nginx
+    root        1320  0.0  0.0  84848  5564 ?        Ss   10:35   0:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+    keyur       1321  0.0  0.0  85892 10044 ?        S    10:35   0:00 nginx: worker process
+    keyur       1322  0.0  0.0  85892 10172 ?        S    10:35   0:00 nginx: worker process
+    keyur       1323  0.0  0.0  85900 10072 ?        S    10:35   0:00 nginx: worker process
+    keyur       1324  0.0  0.0  85892 10044 ?        S    10:35   0:00 nginx: worker process
+    keyur      19918  0.0  0.0   9220  2432 pts/3    S+   11:36   0:00 grep --color=auto nginx
+sudo chown -R keyur:keyur .
+sudo find var generated pub/static pub/media app/etc -type f -exec chmod 664 {} \;
+sudo find var generated pub/static pub/media app/etc -type d -exec chmod 775 {} \;
+sudo chmod u+x bin/magento
+
+
+------------------------------------
 # Cron Jobs
 php bin/magento cron:install
 php bin/magento cron:run
@@ -126,7 +145,14 @@ php bin/magento cron:run
 php bin/magento cache:enable
 php bin/magento cache:status
 
-
+----------------------------------------------------------
+#Install SSH server
+sudo apt install openssh-server -y
+sudo systemctl status ssh
+sudo systemctl start ssh
+sudo systemctl enable ssh
+ip a
+https://www.cyberciti.biz/faq/ubuntu-linux-install-openssh-server/
 
 🔼 Magento Upgrade Process
 --------------------------------------------------------------
